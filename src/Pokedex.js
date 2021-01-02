@@ -1,14 +1,18 @@
 import React from 'react';
-import Wrapper from './components/Wrapper';
+import styled from 'styled-components';
 import PokedexRouter from './routes/PokedexRouter';
+
+const WrapperStyled = styled.main`
+    min-height: calc(100vh - 150px);
+    margin-top: 150px;
+    padding-bottom: 50px;
+`;
 
 const Pokedex = () => {
     return (
-        <Wrapper>
-            <div className='container'>
-                <PokedexRouter />
-            </div>
-        </Wrapper>
+        <WrapperStyled>
+            <PokedexRouter />
+        </WrapperStyled>
     );
 };
 

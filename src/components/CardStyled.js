@@ -27,6 +27,10 @@ const LinkStyled = styled(Link)`
     overflow: hidden;
     text-decoration: none;
 
+    &:focus {
+        outline: none;
+    }
+
     .pokebola {
         position: absolute;
         top: -55px;
