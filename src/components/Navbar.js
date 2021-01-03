@@ -49,7 +49,6 @@ const FormStyled = styled.form`
         background-color: #fff;
         border: 1px solid #ced4da;
         border-radius: 20px;
-        box-sizing: border-box;
         background-image: url(${loupe});
         background-position: 93% 50%;
         background-repeat: no-repeat;
