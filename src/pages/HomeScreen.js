@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import ContainerStyled from '../components/ContainerStyled';
 import PokemonCard from '../components/PokemonCard';
+import useFetchPokemones from '../hooks/useFetchPokemones';
 
 const HomeStyled = styled.div`
     display: grid;
@@ -47,26 +48,15 @@ const ButtonContainerStyled = styled.div`
 `;
 
 const HomeScreen = () => {
-    const [counterStart, setcounterStart] = useState(1);
-    const [counterEnd, setCounterEnd] = useState(9);
-    const [pokemons, setPokemons] = useState([]);
+    const { data: pokemons, loading, error, handleMorePokes } = useFetchPokemones();
 
-    const fetchPokemons = async (start, end) => {
-        for (let i = start; i <= end; i++) {
-            const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
-            const data = await response.json();
-            setPokemons((pokes) => [...pokes, data]);
-        }
-    };
+    if (error) {
+        return <h1>Error</h1>;
+    }
 
-    const handleMorePokes = () => {
-        setcounterStart(counterStart + 9);
-        setCounterEnd(counterEnd + 9);
-    };
-
-    useEffect(() => {
-        fetchPokemons(counterStart, counterEnd);
-    }, [counterStart, counterEnd]);
+    if (loading) {
+        return <h1 style={{ minHeight: '100vh', background: 'red' }}>Loading...</h1>;
+    }
 
     return (
         <ContainerStyled home={'home'}>
