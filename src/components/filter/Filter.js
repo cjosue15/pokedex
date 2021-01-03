@@ -1,16 +1,13 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { types } from '../../helpers/types';
 import down from '../../assets/images/arrow-down.svg';
 import up from '../../assets/images/arrow-up.svg';
 import FilterStyled from './FilterStyled';
+import { PokedexContext } from '../../contex/PokedexContex';
 
 const Filter = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const [typeSelected, setTypeSelected] = useState('Select');
-
-    const handleClose = (name) => {
-        setTypeSelected(name);
-    };
+    const { typeSelected, handleSelectType } = useContext(PokedexContext);
 
     return (
         <FilterStyled>
@@ -19,11 +16,11 @@ const Filter = () => {
                     <img src={isOpen ? up : down} alt='Arrow' />
                 </i>
                 <div className='d-button'>
-                    <span>{typeSelected}</span>
+                    <span>{typeSelected.name}</span>
                 </div>
                 <ul className='d-menu'>
                     {types.map(({ id, name }) => (
-                        <li onClick={() => handleClose(name)} key={id}>
+                        <li onClick={() => handleSelectType({ id, name })} key={id}>
                             {name}
                         </li>
                     ))}

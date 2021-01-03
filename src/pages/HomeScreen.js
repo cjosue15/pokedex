@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import ContainerStyled from '../components/ContainerStyled';
 import PokemonCard from '../components/PokemonCard';
-import useFetchPokemones from '../hooks/useFetchPokemones';
+import { PokedexContext } from '../contex/PokedexContex';
 
 const HomeStyled = styled.div`
     display: grid;
@@ -48,7 +48,9 @@ const ButtonContainerStyled = styled.div`
 `;
 
 const HomeScreen = () => {
-    const { data: pokemons, loading, error, handleMorePokes } = useFetchPokemones();
+    // const { data: pokemons, loading, error, handleMorePokes } = useFetchPokemones();
+
+    const { pokemons, loading, error, handleMorePokes, typeSelected } = useContext(PokedexContext);
 
     if (error) {
         return <h1>Error</h1>;
@@ -62,17 +64,14 @@ const HomeScreen = () => {
         <ContainerStyled home={'home'}>
             <HomeStyled>
                 {pokemons.map((pokemon) => (
-                    <PokemonCard
-                        key={pokemon.id}
-                        id={pokemon.id}
-                        type={pokemon.types[0].type.name}
-                        name={pokemon.name}
-                    />
+                    <PokemonCard key={pokemon.id} id={pokemon.id} type={pokemon.type} name={pokemon.name} />
                 ))}
             </HomeStyled>
-            <ButtonContainerStyled>
-                <button onClick={handleMorePokes}>Load more pokemons!</button>
-            </ButtonContainerStyled>
+            {typeSelected.id === 0 && (
+                <ButtonContainerStyled>
+                    <button onClick={handleMorePokes}>Load more pokemons!</button>
+                </ButtonContainerStyled>
+            )}
         </ContainerStyled>
     );
 };
