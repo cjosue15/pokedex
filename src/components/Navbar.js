@@ -2,7 +2,7 @@ import React from 'react';
 import ContainerStyled from './ContainerStyled';
 import logo from '../assets/images/logo.png';
 import styled from 'styled-components';
-import loupe from '../assets/images/loupe.svg';
+import Filter from './filter/Filter';
 
 const NavStyled = styled.nav`
     position: fixed;
@@ -37,29 +37,6 @@ const NavStyled = styled.nav`
     }
 `;
 
-const FormStyled = styled.form`
-    margin-left: 20px;
-    input {
-        font-family: inherit;
-        display: block;
-        width: 100%;
-        padding: 8px 30px 8px 20px;
-        font-size: 1rem;
-        color: #495057;
-        background-color: #fff;
-        border: 1px solid #ced4da;
-        border-radius: 20px;
-        background-image: url(${loupe});
-        background-position: 93% 50%;
-        background-repeat: no-repeat;
-        background-size: 18px;
-
-        &:focus {
-            outline: none;
-        }
-    }
-`;
-
 const Navbar = () => {
     return (
         <NavStyled>
@@ -69,9 +46,7 @@ const Navbar = () => {
                         <img src={logo} alt='Logo' height='45' />
                         <h1>Pokedex</h1>
                     </div>
-                    <FormStyled>
-                        <input type='text' placeholder='Search your pokemons' />
-                    </FormStyled>
+                    <Filter />
                 </div>
             </ContainerStyled>
         </NavStyled>
