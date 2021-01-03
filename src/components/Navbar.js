@@ -25,7 +25,7 @@ const NavStyled = styled.nav`
             align-items: center;
 
             h1 {
-                font-size: 30px;
+                font-size: 28px;
                 margin: 0px 0px 0px 20px;
                 display: none;
 
@@ -43,7 +43,7 @@ const FormStyled = styled.form`
         font-family: inherit;
         display: block;
         width: 100%;
-        padding: 10px 30px 10px 20px;
+        padding: 8px 30px 8px 20px;
         font-size: 1rem;
         color: #495057;
         background-color: #fff;
@@ -52,7 +52,7 @@ const FormStyled = styled.form`
         background-image: url(${loupe});
         background-position: 93% 50%;
         background-repeat: no-repeat;
-        background-size: 20px;
+        background-size: 18px;
 
         &:focus {
             outline: none;
@@ -66,7 +66,7 @@ const Navbar = () => {
             <ContainerStyled>
                 <div className='navbar-content'>
                     <div className='title'>
-                        <img src={logo} alt='Logo' />
+                        <img src={logo} alt='Logo' height='45' />
                         <h1>Pokedex</h1>
                     </div>
                     <FormStyled>
