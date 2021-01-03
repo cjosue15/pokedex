@@ -26,6 +26,7 @@ const LinkStyled = styled(Link)`
     padding: 16px;
     overflow: hidden;
     text-decoration: none;
+    box-shadow: 0 0 14px 0px rgba(0, 0, 0, 0.25);
 
     &:focus {
         outline: none;
@@ -61,6 +62,7 @@ const LinkStyled = styled(Link)`
 
         .pokemon-info {
             flex: auto;
+            margin-right: 15px;
 
             h1 {
                 margin: 0px 0px 10px 0;
