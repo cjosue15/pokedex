@@ -3,6 +3,7 @@ import ContainerStyled from './ContainerStyled';
 import logo from '../assets/images/logo.png';
 import styled from 'styled-components';
 import Filter from './filter/Filter';
+import { Link } from 'react-router-dom';
 
 const NavStyled = styled.nav`
     position: fixed;
@@ -23,6 +24,8 @@ const NavStyled = styled.nav`
         .title {
             display: flex;
             align-items: center;
+            text-decoration: none;
+            color: #000;
 
             h1 {
                 font-size: 28px;
@@ -42,10 +45,10 @@ const Navbar = () => {
         <NavStyled>
             <ContainerStyled>
                 <div className='navbar-content'>
-                    <div className='title'>
+                    <Link className='title' to='/'>
                         <img src={logo} alt='Logo' height='45' />
                         <h1>Pokedex</h1>
-                    </div>
+                    </Link>
                     <Filter />
                 </div>
             </ContainerStyled>

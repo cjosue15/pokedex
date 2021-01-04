@@ -45,12 +45,16 @@ const ButtonContainerStyled = styled.div`
             outline: none;
         }
     }
+
+    .previus {
+        margin-right: 20px;
+    }
 `;
 
 const HomeScreen = () => {
-    // const { data: pokemons, loading, error, handleMorePokes } = useFetchPokemones();
-
-    const { pokemons, loading, error, handleMorePokes, typeSelected } = useContext(PokedexContext);
+    const { pokemons, loading, error, handleMorePokes, handleMinusPokes, typeSelected, counterStart } = useContext(
+        PokedexContext
+    );
 
     if (error) {
         return <h1>Error</h1>;
@@ -68,9 +72,17 @@ const HomeScreen = () => {
                 ))}
             </HomeStyled>
             {typeSelected.id === 0 && (
-                <ButtonContainerStyled>
-                    <button onClick={handleMorePokes}>Load more pokemons!</button>
-                </ButtonContainerStyled>
+                <>
+                    <ButtonContainerStyled>
+                        {counterStart !== 1 && (
+                            <button className='previus' onClick={handleMinusPokes}>
+                                Previus page!
+                            </button>
+                        )}
+
+                        <button onClick={handleMorePokes}>Next page!</button>
+                    </ButtonContainerStyled>
+                </>
             )}
         </ContainerStyled>
     );

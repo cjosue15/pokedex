@@ -1,43 +1,28 @@
 import React from 'react';
-import loupe from '../../assets/images/loupe.svg';
 import styled from 'styled-components';
 
 const Filter = styled.form`
     display: flex;
     align-items: center;
-    input {
-        font-family: inherit;
-        display: block;
-        width: 100%;
-        padding: 0 20px;
-        height: 40px;
-        line-height: 40px;
-        font-size: 1rem;
-        color: #75757e;
-        background-color: #fff;
-        border: 1px solid #ced4da;
-        background-image: url(${loupe});
-        background-position: 93% 50%;
-        background-repeat: no-repeat;
-        background-size: 18px;
-        border-top-right-radius: 20px;
-        border-bottom-right-radius: 20px;
-        border-top-left-radius: 0px;
-        border-bottom-left-radius: 0px;
 
-        &:focus {
-            outline: none;
+    .search {
+        color: #75757e;
+        margin-right: 30px;
+        text-decoration: none;
+
+        span {
+            color: #000;
+            font-size: 12px;
+            font-weight: bold;
         }
     }
 
     .dropdown {
         border: 1px solid #ced4da;
-        border-right: none;
         height: 40px;
         line-height: 40px;
         padding: 0 20px;
-        border-top-left-radius: 20px;
-        border-bottom-left-radius: 20px;
+        border-radius: 20px;
         position: relative;
         width: 130px;
         flex-shrink: 0;

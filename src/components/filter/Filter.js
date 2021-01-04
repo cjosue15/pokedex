@@ -4,6 +4,7 @@ import down from '../../assets/images/arrow-down.svg';
 import up from '../../assets/images/arrow-up.svg';
 import FilterStyled from './FilterStyled';
 import { PokedexContext } from '../../contex/PokedexContex';
+import { Link } from 'react-router-dom';
 
 const Filter = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -11,6 +12,9 @@ const Filter = () => {
 
     return (
         <FilterStyled>
+            <Link className='search' to='/search'>
+                <span>01.</span> Search Pokemons
+            </Link>
             <div className={`dropdown ${isOpen ? 'active' : ''}`} onClick={() => setIsOpen(!isOpen)}>
                 <i className='icon-arrow'>
                     <img src={isOpen ? up : down} alt='Arrow' />
@@ -26,7 +30,6 @@ const Filter = () => {
                     ))}
                 </ul>
             </div>
-            <input type='text' placeholder='Search your pokemons' />
         </FilterStyled>
     );
 };

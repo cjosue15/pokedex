@@ -1,5 +1,5 @@
 import React from 'react';
-import pokebola from '../assets/images/pokebola.svg';
+import pokebola from '../assets/images/logo.png';
 import CardStyled from './CardStyled';
 
 const PokemonCard = ({ id, name, type }) => {
@@ -20,6 +20,10 @@ const PokemonCard = ({ id, name, type }) => {
                         loading='lazy'
                         height='150'
                         src={`https://pokeres.bastionbot.org/images/pokemon/${id}.png`}
+                        onError={(e) => {
+                            e.target.onerror = null;
+                            e.target.src = pokebola;
+                        }}
                         alt={name}
                     />
                 </figure>

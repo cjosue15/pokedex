@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-d
 import HomeScreen from '../pages/HomeScreen';
 import DetailScreen from '../pages/DetailScreen';
 import Navbar from '../components/Navbar';
+import SearchScreen from '../pages/SearchScreen';
 
 const PokedexRouter = () => {
     return (
@@ -13,6 +14,7 @@ const PokedexRouter = () => {
                 renders the first one that matches the current URL. */}
             <Switch>
                 <Route exact path='/detail/:id' component={DetailScreen} />
+                <Route exact path='/search' component={SearchScreen} />
                 <Route exact path='/' component={HomeScreen} />
                 <Redirect exact to='/' />
             </Switch>

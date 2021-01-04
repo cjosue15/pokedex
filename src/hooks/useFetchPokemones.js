@@ -12,12 +12,12 @@ const useFetchPokemones = () => {
 
     const fetchPokemons = async (start, end, type) => {
         setloading(true);
-
+        setcounterStart(start);
+        setCounterEnd(end);
         try {
             if (start === 0 && end === 0) {
                 const response = await fetch(`${ENDPOINT}type/${type.toLowerCase()}`);
                 const data = await response.json();
-                console.log(data.pokemon);
                 const newData = data.pokemon.map(({ pokemon }) => ({
                     id: Number(getIdUrl(pokemon.url)),
                     name: pokemon.name,
@@ -25,6 +25,7 @@ const useFetchPokemones = () => {
                 }));
                 setData(newData);
             } else {
+                const arrayPokes = [];
                 for (let i = start; i <= end; i++) {
                     const response = await fetch(`${ENDPOINT}pokemon/${i}`);
                     const json = await response.json();
@@ -33,9 +34,9 @@ const useFetchPokemones = () => {
                         name: json.name,
                         type: json.types[0].type.name,
                     };
-                    console.log(pokemon);
-                    setData((pokes) => [...pokes, pokemon]);
+                    arrayPokes.push(pokemon);
                 }
+                setData(arrayPokes);
             }
             setloading(false);
             setError(false);
@@ -50,11 +51,16 @@ const useFetchPokemones = () => {
         setCounterEnd(counterEnd + 9);
     };
 
+    const handleMinusPokes = () => {
+        setcounterStart(counterStart - 9);
+        setCounterEnd(counterEnd - 9);
+    };
+
     useEffect(() => {
         fetchPokemons(counterStart, counterEnd);
     }, [counterStart, counterEnd]);
 
-    return { data, loading, error, handleMorePokes, fetchPokemons };
+    return { data, loading, error, handleMorePokes, handleMinusPokes, fetchPokemons, counterStart };
 };
 
 export default useFetchPokemones;
