@@ -5,16 +5,20 @@ import PokemonCard from '../components/PokemonCard';
 import { PokedexContext } from '../contex/PokedexContex';
 
 const HomeStyled = styled.div`
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    gap: 30px;
+    padding: 50px 0;
 
-    @media screen and (min-width: 600px) {
-        grid-template-columns: repeat(2, 1fr);
-    }
+    .home {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 30px;
 
-    @media screen and (min-width: 991px) {
-        grid-template-columns: repeat(3, 1fr);
+        @media screen and (min-width: 600px) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media screen and (min-width: 991px) {
+            grid-template-columns: repeat(3, 1fr);
+        }
     }
 `;
 
@@ -67,23 +71,25 @@ const HomeScreen = () => {
     return (
         <ContainerStyled home={'home'}>
             <HomeStyled>
-                {pokemons.map((pokemon) => (
-                    <PokemonCard key={pokemon.id} id={pokemon.id} type={pokemon.type} name={pokemon.name} />
-                ))}
-            </HomeStyled>
-            {typeSelected.id === 0 && (
-                <>
-                    <ButtonContainerStyled>
-                        {counterStart !== 1 && (
-                            <button className='previus' onClick={handleMinusPokes}>
-                                Previus page!
-                            </button>
-                        )}
+                <div className='home'>
+                    {pokemons.map((pokemon) => (
+                        <PokemonCard key={pokemon.id} id={pokemon.id} type={pokemon.type} name={pokemon.name} />
+                    ))}
+                </div>
+                {typeSelected.id === 0 && (
+                    <>
+                        <ButtonContainerStyled>
+                            {counterStart !== 1 && (
+                                <button className='previus' onClick={handleMinusPokes}>
+                                    Previus page!
+                                </button>
+                            )}
 
-                        <button onClick={handleMorePokes}>Next page!</button>
-                    </ButtonContainerStyled>
-                </>
-            )}
+                            <button onClick={handleMorePokes}>Next page!</button>
+                        </ButtonContainerStyled>
+                    </>
+                )}
+            </HomeStyled>
         </ContainerStyled>
     );
 };

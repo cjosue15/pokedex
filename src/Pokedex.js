@@ -5,9 +5,9 @@ import useFetchPokemones from './hooks/useFetchPokemones';
 import PokedexRouter from './routes/PokedexRouter';
 
 const WrapperStyled = styled.main`
-    min-height: calc(100vh - 150px);
-    margin-top: 150px;
-    padding-bottom: 50px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 `;
 
 const Pokedex = () => {
@@ -24,7 +24,6 @@ const Pokedex = () => {
 
     const handleSelectType = ({ id, name }) => {
         setTypeSelected({ id, name });
-        console.log(pokemons);
         if (id === 0) {
             fetchPokemons(1, 9, 'type');
         } else {

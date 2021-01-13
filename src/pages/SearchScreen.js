@@ -2,12 +2,20 @@ import React from 'react';
 import styled from 'styled-components';
 import ContainerStyled from '../components/ContainerStyled';
 import loupe from '../assets/images/loupe.svg';
-import PokemonCard from '../components/PokemonCard';
 import useFetchPokemonSearch from '../hooks/useFetchOnePokemon';
+import { colors } from '../helpers/colors';
+import PokemonResult from '../components/PokemonResult';
 
 const SearchScreenStyled = styled.div`
+    flex: auto;
+    background-color: ${(props) => colors[props.type]};
+    padding-top: 5em;
+    display: flex;
+    flex-direction: column;
+
     .content-search {
         text-align: center;
+        margin-bottom: 80px;
         input {
             font-family: inherit;
             display: inline-block;
@@ -31,26 +39,21 @@ const SearchScreenStyled = styled.div`
             }
         }
     }
-
-    .content-result {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 100px;
-    }
 `;
 
 const SearchScreen = () => {
     const { pokemon, error, loading, value, setValue, fetchPokemon } = useFetchPokemonSearch();
 
+    console.log(pokemon);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-        fetchPokemon(value);
+        fetchPokemon(value.toLowerCase());
     };
 
     return (
-        <ContainerStyled>
-            <SearchScreenStyled>
+        <SearchScreenStyled type={pokemon?.types[0].type.name || '#f7f7ee'}>
+            <ContainerStyled>
                 <div className='content-search'>
                     <form onSubmit={handleSubmit}>
                         <input
@@ -61,15 +64,11 @@ const SearchScreen = () => {
                         />
                     </form>
                 </div>
-                <div className='content-result'>
-                    {loading && !error && 'loading'}
-                    {error && !loading && 'errror'}
-                    {pokemon && !error && (
-                        <PokemonCard id={pokemon.id} name={pokemon.name} type={pokemon.types[0].type.name} />
-                    )}
-                </div>
-            </SearchScreenStyled>
-        </ContainerStyled>
+            </ContainerStyled>
+            {loading && !error && 'loading'}
+            {error && !loading && 'errror'}
+            {!loading && pokemon && !error && <PokemonResult pokemon={pokemon} />}
+        </SearchScreenStyled>
     );
 };
 

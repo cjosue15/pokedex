@@ -6,9 +6,8 @@ import Filter from './filter/Filter';
 import { Link } from 'react-router-dom';
 
 const NavStyled = styled.nav`
-    position: fixed;
+    position: sticky;
     top: 0;
-    width: 100%;
     height: 90px;
     background: #fff;
     z-index: 1;
