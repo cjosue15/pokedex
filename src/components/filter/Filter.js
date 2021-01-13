@@ -5,14 +5,18 @@ import up from '../../assets/images/arrow-up.svg';
 import FilterStyled from './FilterStyled';
 import { PokedexContext } from '../../contex/PokedexContex';
 import { Link } from 'react-router-dom';
+import close from '../../assets/images/close.svg';
 
-const Filter = () => {
+const Filter = ({ isOpenMenu, setIsOpenMenu }) => {
     const [isOpen, setIsOpen] = useState(false);
     const { typeSelected, handleSelectType } = useContext(PokedexContext);
 
     return (
-        <FilterStyled>
-            <Link className='search' to='/search'>
+        <FilterStyled isOpenMenu={isOpenMenu}>
+            <i className='close-icon' onClick={(_) => setIsOpenMenu(!isOpenMenu)}>
+                <img src={close} alt='Close' />
+            </i>
+            <Link className='search' to='/search' onClick={(_) => setIsOpenMenu(false)}>
                 <span>01.</span> Search Pokemons
             </Link>
             <div className={`dropdown ${isOpen ? 'active' : ''}`} onClick={() => setIsOpen(!isOpen)}>

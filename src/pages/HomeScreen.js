@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import ContainerStyled from '../components/ContainerStyled';
+import Error from '../components/Error';
+import Loader from '../components/Loader';
 import PokemonCard from '../components/PokemonCard';
 import { PokedexContext } from '../contex/PokedexContex';
 
@@ -61,11 +63,11 @@ const HomeScreen = () => {
     );
 
     if (error) {
-        return <h1>Error</h1>;
+        return <Error />;
     }
 
     if (loading) {
-        return <h1 style={{ minHeight: '100vh', background: 'red' }}>Loading...</h1>;
+        return <Loader />;
     }
 
     return (

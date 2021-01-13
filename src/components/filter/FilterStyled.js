@@ -9,7 +9,6 @@ const Filter = styled.form`
         color: #75757e;
         margin-right: 30px;
         text-decoration: none;
-
         span {
             color: #000;
             font-size: 12px;
@@ -81,10 +80,72 @@ const Filter = styled.form`
             }
         }
     }
+
+    .close-icon {
+        position: absolute;
+        display: none;
+        width: 25px;
+        top: 50px;
+        right: 50px;
+
+        img {
+            max-width: 100%;
+            vertical-align: bottom;
+        }
+    }
+
+    @media only screen and (max-width: 600px) {
+        opacity: 0;
+        visibility: hidden;
+        z-index: 1;
+        position: fixed;
+        background: #fff;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-direction: column;
+        transition: all 0.25s ease-in-out;
+        padding-top: 5em;
+
+        &.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .search {
+            margin-right: 0;
+            margin-bottom: 40px;
+            font-size: 18px;
+        }
+
+        .dropdown {
+            width: 300px;
+            max-width: 90%;
+
+            .d-menu {
+                height: 300px;
+                overflow-y: scroll;
+                width: 100%;
+
+                li {
+                    width: 300px;
+                    max-width: 90%;
+                }
+            }
+        }
+
+        .close-icon {
+            display: block;
+        }
+    }
 `;
 
-const FilterStyled = ({ children }) => {
-    return <Filter>{children}</Filter>;
+const FilterStyled = ({ children, isOpenMenu }) => {
+    return <Filter className={`${isOpenMenu ? 'active' : ''}`}>{children}</Filter>;
 };
 
 export default FilterStyled;

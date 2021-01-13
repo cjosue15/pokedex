@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
 import ContainerStyled from '../components/ContainerStyled';
-import loupe from '../assets/images/loupe.svg';
+import loupe from '../assets/images/lupa.svg';
 import useFetchPokemonSearch from '../hooks/useFetchOnePokemon';
 import { colors } from '../helpers/colors';
 import PokemonResult from '../components/PokemonResult';
+import Loader from '../components/Loader';
+import Error from '../components/Error';
 
 const SearchScreenStyled = styled.div`
     flex: auto;
@@ -41,14 +43,46 @@ const SearchScreenStyled = styled.div`
     }
 `;
 
-const SearchScreen = () => {
-    const { pokemon, error, loading, value, setValue, fetchPokemon } = useFetchPokemonSearch();
+const ButtonStyled = styled.button`
+    border-radius: 15px;
+    color: rgb(255, 255, 255);
+    height: 32px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 15px;
+    padding: 15px 30px 30px;
+    background: rgb(208, 200, 239);
+    border: 1px solid rgb(124, 83, 140);
+    box-shadow: rgb(124, 83, 140) 1px 4px 5px 0px;
+    text-decoration: none;
+    margin-top: 50px;
+    cursor: pointer;
+    transition: background 0.2s ease-in-out;
 
-    console.log(pokemon);
+    &:hover {
+        background: rgb(157 144 208);
+    }
+
+    &:focus {
+        outline: none;
+    }
+`;
+
+const SearchScreen = () => {
+    const { pokemon, error, setError, loading, setLoading, value, setValue, fetchPokemon } = useFetchPokemonSearch();
+
+    const input = useRef();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         fetchPokemon(value.toLowerCase());
+    };
+
+    const handleSearchAgain = () => {
+        setLoading(false);
+        setError(false);
+        setValue('');
+        input.current.focus();
     };
 
     return (
@@ -61,12 +95,17 @@ const SearchScreen = () => {
                             value={value}
                             placeholder='Search your pokemon!!!'
                             onChange={(e) => setValue(e.target.value)}
+                            ref={input}
                         />
                     </form>
                 </div>
             </ContainerStyled>
-            {loading && !error && 'loading'}
-            {error && !loading && 'errror'}
+            {loading && !error && <Loader />}
+            {error && !loading && (
+                <Error>
+                    <ButtonStyled onClick={handleSearchAgain}>Search again</ButtonStyled>
+                </Error>
+            )}
             {!loading && pokemon && !error && <PokemonResult pokemon={pokemon} />}
         </SearchScreenStyled>
     );

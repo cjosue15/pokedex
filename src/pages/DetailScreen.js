@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import Error from '../components/Error';
+import Loader from '../components/Loader';
 import PokemonResult from '../components/PokemonResult';
 import useFetchPokemonSearch from '../hooks/useFetchOnePokemon';
 
@@ -14,8 +16,8 @@ const DetailScreen = () => {
 
     return (
         <>
-            {loading && !error && <h1>Loadinf</h1>}
-            {!loading && error && <h1>Error</h1>}
+            {loading && !error && <Loader />}
+            {!loading && error && <Error />}
             {!loading && !error && pokemon && <PokemonResult pokemon={pokemon} page={'detail'} />}
         </>
     );

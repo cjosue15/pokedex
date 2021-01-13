@@ -20,7 +20,7 @@ const useFetchPokemonSearch = () => {
         }
     };
 
-    return { pokemon, error, loading, value, setValue, fetchPokemon };
+    return { pokemon, setPokemon, error, setError, setLoading, loading, value, setValue, fetchPokemon };
 };
 
 export default useFetchPokemonSearch;

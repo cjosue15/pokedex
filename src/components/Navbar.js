@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ContainerStyled from './ContainerStyled';
 import logo from '../assets/images/logo.png';
 import styled from 'styled-components';
 import Filter from './filter/Filter';
 import { Link } from 'react-router-dom';
+import lupa from '../assets/images/lupa.svg';
 
 const NavStyled = styled.nav`
     position: sticky;
@@ -37,9 +38,27 @@ const NavStyled = styled.nav`
             }
         }
     }
+
+    .lupa-icon {
+        width: 25px;
+        display: none;
+        cursor: pointer;
+        img {
+            max-width: 100%;
+            vertical-align: bottom;
+        }
+    }
+
+    @media only screen and (max-width: 600px) {
+        .lupa-icon {
+            display: block;
+        }
+    }
 `;
 
 const Navbar = () => {
+    const [isOpenMenu, setIsOpenMenu] = useState(false);
+
     return (
         <NavStyled>
             <ContainerStyled>
@@ -48,7 +67,15 @@ const Navbar = () => {
                         <img src={logo} alt='Logo' height='45' />
                         <h1>Pokedex</h1>
                     </Link>
-                    <Filter />
+                    <Filter isOpenMenu={isOpenMenu} setIsOpenMenu={setIsOpenMenu} />
+                    <i
+                        className='lupa-icon'
+                        onClick={(_) => {
+                            setIsOpenMenu(!isOpenMenu);
+                        }}
+                    >
+                        <img src={lupa} alt='Lupa' />
+                    </i>
                 </div>
             </ContainerStyled>
         </NavStyled>
