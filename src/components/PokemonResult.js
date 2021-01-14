@@ -87,7 +87,7 @@ const PokemonResultStyled = styled.div`
         }
     }
 
-    @media screen and (max-width: 600pc) {
+    @media screen and (max-width: 600px) {
         .pokemonsearch-principal {
             padding-top: ${(props) => (props.page === 'detail' ? '50px' : null)};
             .content-principal {
