@@ -5,7 +5,6 @@ import ContainerStyled from './ContainerStyled';
 import ProgressBar from './ProgressBar';
 
 const PokemonResultStyled = styled.div`
-    /* flex-grow: 1; */
     background-color: ${(props) => colors[props.type]};
     display: flex;
     flex-direction: column;
@@ -84,6 +83,47 @@ const PokemonResultStyled = styled.div`
 
             h2 {
                 margin-top: 0;
+            }
+        }
+    }
+
+    @media screen and (max-width: 600pc) {
+        .pokemonsearch-principal {
+            padding-top: ${(props) => (props.page === 'detail' ? '50px' : null)};
+            .content-principal {
+                grid-template-columns: 1fr;
+                justify-items: center;
+                gap: 30px;
+
+                figure {
+                    max-width: 250px;
+                    width: 100%;
+                }
+
+                .description {
+                    h2 {
+                        margin-top: 0px;
+                    }
+                }
+
+                .bar-info {
+                    width: 100%;
+                    flex-direction: row;
+                    padding: 10px 0;
+
+                    .weight {
+                        &:first-child {
+                            margin-bottom: 0px;
+                            margin-right: 50px;
+                        }
+                    }
+                }
+            }
+        }
+
+        .pokemonsearch-info {
+            .content-info {
+                grid-template-columns: 1fr;
             }
         }
     }

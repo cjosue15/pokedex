@@ -11,6 +11,11 @@ const Filter = ({ isOpenMenu, setIsOpenMenu }) => {
     const [isOpen, setIsOpen] = useState(false);
     const { typeSelected, handleSelectType } = useContext(PokedexContext);
 
+    const handleClick = ({ id, name }) => {
+        setIsOpenMenu(!isOpenMenu);
+        handleSelectType({ id, name });
+    };
+
     return (
         <FilterStyled isOpenMenu={isOpenMenu}>
             <i className='close-icon' onClick={(_) => setIsOpenMenu(!isOpenMenu)}>
@@ -28,7 +33,7 @@ const Filter = ({ isOpenMenu, setIsOpenMenu }) => {
                 </div>
                 <ul className='d-menu'>
                     {types.map(({ id, name }) => (
-                        <li onClick={() => handleSelectType({ id, name })} key={id}>
+                        <li onClick={(_) => handleClick({ id, name })} key={id}>
                             {name}
                         </li>
                     ))}

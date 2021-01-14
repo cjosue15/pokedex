@@ -17,10 +17,17 @@ const ErrorStyled = styled.div`
     figure {
         margin: 0;
         width: 350px;
+        max-width: 100%;
+        padding: 0 2em;
 
         img {
             max-width: 100%;
         }
+    }
+
+    h1 {
+        text-align: center;
+        padding: 0 2em;
     }
 `;
 
